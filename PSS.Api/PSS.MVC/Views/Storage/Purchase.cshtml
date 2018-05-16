@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Purchase";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2>采购订单</h2>
+                <div class="box-icon">
+                    编号：<input type="text" name="id">
+                    供货商：<input type="text" name="id">
+                    创建人：<input type="text" name="id">
+                    状态：<select size="1" name="zt" aria-controls="DataTables_Table_0">
+                        <option value="0">请选择</option>
+                    </select>
+                    <button type="button" class="btn btn-primary  btn-xs">提交</button>
+
+                </div>
+            </div>
+            <div class="box-content">
+                <table class="table table-bordered bootstrap-datatable datatable responsive" style="background-color:white">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>供货商</th>
+                            <th>创建人</th>
+                            <th>创建时间</th>
+                            <th>预计交货时间</th>
+                            <th>金额</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
+<script src="~/js/jquery.js"></script>
+<script type="text/javascript">
+    function SelectStocks() {
+        $.get("http://localhost:56659/Storage/Purchase", {}, function (rs) {
+            //获得表
+            var tbl = $("table");
+            //清空表
+            tbl.find("tr:gt(0)").remove();
+            $.each(rs, function (i, obj) {
+                var tr = $("<tr/>");
+
+                var td1 = $("<td/>").text(obj.StockID);
+                var td2 = $("<td/>").text(obj.PPID);
+                var td3 = $("<td/>").text(obj.StockDate);
+                var td4 = $("<td/>").text(obj.StockInDate);
+                var td5 = $("<td/>").text(obj.StockUser);
+                var td6 = $("<td/>").text(obj.StockState);
+                var td7 = $("<td/>").text(obj.StockDesc);
+                var td8 = $("<td/>");
+
+                tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8);
+                tbl.append(tr);
+            }
+        )
+        },"json");
+    }
+</script>

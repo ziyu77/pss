@@ -9,9 +9,10 @@ namespace PSS.MVC.Controllers
     public class StorageController : Controller
     {
         // GET: Storage
-        public ActionResult Index()
+        public ActionResult Purchase()
         {
             return View();
         }
+
     }
 }
