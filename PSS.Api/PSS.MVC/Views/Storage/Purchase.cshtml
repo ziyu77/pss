@@ -10,13 +10,15 @@
             <div class="box-header well" data-original-title="">
                 <h2>采购订单</h2>
                 <div class="box-icon">
-                    编号：<input type="text" name="id">
-                    供货商：<input type="text" name="id">
-                    创建人：<input type="text" name="id">
-                    状态：<select size="1" name="zt" aria-controls="DataTables_Table_0">
+                    编号：<input type="text" id="StockID">
+                    供货商：<input type="text" id="PPID">
+                    创建人：<input type="text" id="StockUser">
+                    状态：<select size="1" id="StockState" aria-controls="DataTables_Table_0">
                         <option value="0">请选择</option>
+                        <option value="1">未审核</option>
+                        <option value="2">已审核</option>
                     </select>
-                    <button type="button" class="btn btn-primary  btn-xs">提交</button>
+                    <button type="button" class="btn btn-primary  btn-xs" onclick="SelectStocks()">提交</button>
 
                 </div>
             </div>
@@ -29,8 +31,8 @@
                             <th>创建人</th>
                             <th>创建时间</th>
                             <th>预计交货时间</th>
-                            <th>金额</th>
                             <th>状态</th>
+                            <th>备注</th>
                         </tr>
                     </thead>
 
@@ -41,10 +43,24 @@
     <!--/span-->
 </div><!--/row-->
 
-<script src="~/js/jquery.js"></script>
+
 <script type="text/javascript">
+    $(function () {
+
+        $("button:contains(提交)").click(function () {
+            SelectStocks();
+        });
+        SelectStocks();
+    })
+
     function SelectStocks() {
-        $.get("http://localhost:56659/Storage/Purchase", {}, function (rs) {
+        //获取数据
+        var StockID = $("#StockID").val();
+        var PPID = $("#PPID").val();
+        var StockUser = $("#StockUser").val();
+        var StockState = $("#StockState").val();
+        console.log({ StockID: StockID, PPID: PPID, StockUser: StockUser, StockState: StockState });
+        $.get("http://localhost:56642/api/Storage", { StockID: StockID, PPID: PPID, StockUser: StockUser, StockState: StockState }, function (rs) {
             //获得表
             var tbl = $("table");
             //清空表
@@ -54,17 +70,16 @@
 
                 var td1 = $("<td/>").text(obj.StockID);
                 var td2 = $("<td/>").text(obj.PPID);
-                var td3 = $("<td/>").text(obj.StockDate);
-                var td4 = $("<td/>").text(obj.StockInDate);
-                var td5 = $("<td/>").text(obj.StockUser);
+                var td3 = $("<td/>").text(obj.StockUser);
+                var td4 = $("<td/>").text(obj.StockDate);
+                var td5 = $("<td/>").text(obj.StockInDate);
                 var td6 = $("<td/>").text(obj.StockState);
                 var td7 = $("<td/>").text(obj.StockDesc);
-                var td8 = $("<td/>");
 
-                tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8);
+                tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7);
                 tbl.append(tr);
             }
         )
-        },"json");
+        }, "json");
     }
 </script>

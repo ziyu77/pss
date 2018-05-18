@@ -11,6 +11,8 @@ namespace PSS.Api
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

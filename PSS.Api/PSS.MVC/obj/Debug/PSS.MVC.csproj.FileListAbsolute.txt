@@ -61,6 +61,6 @@ C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\bin\System.Web.Webp
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\bin\System.Web.Webpages.Razor.xml
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\bin\System.Web.Helpers.xml
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\bin\System.Web.Mvc.xml
-C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\obj\Debug\PSS.MVC.csprojResolveAssemblyReference.cache
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\obj\Debug\PSS.MVC.dll
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\obj\Debug\PSS.MVC.pdb
+C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.MVC\obj\Debug\PSS.MVC.csprojResolveAssemblyReference.cache

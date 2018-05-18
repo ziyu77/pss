@@ -55,6 +55,5 @@ C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\bin\Newtonsoft.Json
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\bin\System.Net.Http.Formatting.xml
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\bin\System.Web.Http.xml
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\bin\System.Web.Http.WebHost.xml
-C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\obj\Debug\PSS.Api.csprojResolveAssemblyReference.cache
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\obj\Debug\PSS.Api.dll
 C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\obj\Debug\PSS.Api.pdb

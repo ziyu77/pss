@@ -13,16 +13,17 @@ namespace PSS.Api.Controllers
     {
         PSSEntities db = new PSSEntities();
 
-        public IHttpActionResult Get(string StockID, string PPID, int? StockUser, int StockState)
+        public IHttpActionResult Get(string StockID, string PPID, int StockUser, int StockState)
         {
-
+            StockID = StockID ?? "";
+            PPID = PPID ?? "";
+            
             var st = db.Stocks
-                .Where(s => StockID ==null || s.StockID.Contains(StockID))
-                .Where(s => PPID == null || s.PPID.Contains(PPID))
+                .Where(s => StockID =="" || s.StockID.Contains(StockID))
+                .Where(s => PPID == "" || s.PPID.Contains(PPID))
                 .Where(s => StockUser == 0 || s.StockUser == StockUser)
                 .Where(s => StockState == 0 || s.StockState == StockState)
-                .Select(s => new
-                {
+                .Select(s => new{
                     s.StockID,
                     s.PPID,
                     s.StockDate,
