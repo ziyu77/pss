@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "CheckDepot";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2>库存调拨</h2>
+                <div class="box-icon">
+                    编号：<input type="text" name="id">
+                    调拨地：<input type="text" name="id">
+                    创建人：<input type="text" name="id">
+                    状态：<select size="1" name="zt" aria-controls="DataTables_Table_0">
+                            <option value="0">请选择</option>
+                    </select>
+                    <button type="button" class="btn btn-primary btn-xs">提交</button>
+                
+                </div>
+            </div>
+            <div class="box-content">
+                <table class="table table-bordered bootstrap-datatable datatable responsive">
+                    <thead>
+                        <tr>
+                            <th>调拨编号</th>
+                            <th>调拨仓库</th>
+                            <th>调入仓库</th>
+                            <th>调拨日期</th>
+                            <th>经手人</th>
+                            <th>备注</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/jquery.js"></script>
+<script type="text/javascript">
+    function SelectDepots() {
+        $.get("http://localhost:56642/Depots/CheckDepot", {}, function (rs) {
+            //获得表
+            var tbl = $("table");
+            //清空表
+            tbl.find("tr:gt(0)").remove();
+            $.each(rs, function (i, obj) {
+                var tr = $("<tr/>");
+
+                var td1 = $("<td/>").text(obj.DevID);
+                var td2 = $("<td/>").text(obj.DevOutID);
+                var td3 = $("<td/>").text(obj.DevInID);
+                var td4 = $("<td/>").text(obj.UserID);
+                var td5 = $("<td/>").text(obj.DevDate);
+                var td6 = $("<td/>").text(obj.DevDesc);
+                var td7 = $("<td/>").text(obj.DevState);
+
+                tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8);
+                tbl.append(tr);
+            });
+        },"json");
+    }
+</script>
+
