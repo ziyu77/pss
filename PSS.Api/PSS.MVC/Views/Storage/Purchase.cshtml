@@ -9,16 +9,23 @@
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
                 <h2>采购订单</h2>
+
                 <div class="box-icon">
+
                     编号：<input type="text" id="StockID">
+
                     供货商：<input type="text" id="PPID">
-                    创建人：<input type="text" id="StockUser">
+
+                    <!--创建人：<input type="text" id="StockUser">-->
                     状态：<select size="1" id="StockState" aria-controls="DataTables_Table_0">
-                        <option value="0">请选择</option>
+                        <option selected="selected" value="0">--请选择-- </option>
                         <option value="1">未审核</option>
                         <option value="2">已审核</option>
                     </select>
+
                     <button type="button" class="btn btn-primary  btn-xs" onclick="SelectStocks()">提交</button>
+
+                    <a class="btn btn-default" href="~/Storage/PurchaseAdd" role="button">添加订单</a>
 
                 </div>
             </div>
@@ -33,6 +40,7 @@
                             <th>预计交货时间</th>
                             <th>状态</th>
                             <th>备注</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
 
@@ -57,10 +65,9 @@
         //获取数据
         var StockID = $("#StockID").val();
         var PPID = $("#PPID").val();
-        var StockUser = $("#StockUser").val();
+        //var StockUser = $("#StockUser").val();
         var StockState = $("#StockState").val();
-        console.log({ StockID: StockID, PPID: PPID, StockUser: StockUser, StockState: StockState });
-        $.get("http://localhost:56642/api/Storage", { StockID: StockID, PPID: PPID, StockUser: StockUser, StockState: StockState }, function (rs) {
+        $.get("http://localhost:56642/api/Storage", { StockID: StockID, PPID: PPID, StockState: StockState }, function (rs) {
             //获得表
             var tbl = $("table");
             //清空表
@@ -73,13 +80,44 @@
                 var td3 = $("<td/>").text(obj.StockUser);
                 var td4 = $("<td/>").text(obj.StockDate);
                 var td5 = $("<td/>").text(obj.StockInDate);
-                var td6 = $("<td/>").text(obj.StockState);
+                var td6 = $("<td/>").text(obj.StockState == 1 ? "未审核" : "已审核");
                 var td7 = $("<td/>").text(obj.StockDesc);
+                var td8 = $("<td/>");
 
-                tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7);
+                //修改按钮
+                var edit = $("<a href=/Storage/edit/" + obj.StockID+" id='edit'>修改<a/>", {
+                  
+                })
+                //删除按钮
+                var del = $("<button/>", {
+                    text: "删除",
+                    click: function () {
+                        if (confirm("是否要删除？")) {
+                            $.ajax({
+                                type: "delete",
+                                data: {},
+                                url: "http://localhost:56642/api/Storage/" + obj.StockID,
+                                dataType: "json",
+                                success: function (rs) {
+                                    if (parseFloat(rs) > 0) {
+                                        alert("删除成功");
+                                        SelectStocks();
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+
+                td8.append(del, edit);
+
+                tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8);
                 tbl.append(tr);
             }
         )
         }, "json");
     }
+
+   
+
 </script>

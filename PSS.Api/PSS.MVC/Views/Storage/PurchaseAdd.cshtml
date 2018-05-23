@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "PurchaseAdd";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2>
+                    <span>添加采购订单</span>
+
+                    <span style="float:right"><a class="btn btn-default" href="~/Storage/Purchase" role="button">采购订单信息</a></span>
+                </h2>
+
+
+                <div class="box-icon" style="border-top:1px solid red;border-bottom:1px solid red;height:130px">
+
+                    <table width="100%" cellspacing="1" cellpadding="3">
+
+                        <tr>
+                            <td colspan="6" style="text-align:center">
+                                <h3>单据信息</h3> 
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <!--采购单编号 td-->
+                            <td width="30%">
+                                <div align="right">采购单编号：</div>
+                            </td>
+
+                            <td width="25%">
+                                <div align="left">
+                                    <i ><label id="dd"></label></i>
+                                </div>
+                            </td>
+                            <!--采购单编号 td-->
+
+                            <!--交货时间 td-->
+                            <td width="10%">
+                                <div align="right">
+                                    <strong>预计交货时间：</strong>
+                                </div>
+                            </td>
+
+                            <td width="40%">
+                                <div style="float:left"><input type="date" id="time" value=""></div>
+                            </td>
+                        </tr>
+                            <!--交货时间 td-->
+
+                        <tr>
+                            <!--采购商户 td-->
+                            <td>
+                                <div align="right">采购商户<strong>：</strong></div>
+                            </td>
+
+                            <td>
+                                <div align="left">
+                                    <input type="text" id="PPID" size="10">
+                                    <button type="button" class="btn btn-primary  btn-xs" onclick="" id="shop">＋</button>
+                                </div>
+                            </td>
+                            <!--采购商户 td-->
+
+                            <!--订单备注 td-->
+                            <td>
+                                <div align="right">
+                                    <strong> 订单备注：</strong>
+                                </div>
+                            </td>
+                            <td>
+                                <div align="left">
+                                    <input type="text" id="PPID">
+                                </div>
+                            </td>
+                            <!--订单备注 td-->
+                        </tr>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+     
+    $(function () {
+        //获取系统当前时间
+        var time = new Date();
+        var newtime = time.getFullYear() + '-0' + (time.getMonth() + 1) + '-' + time.getDate();
+        $("#time").val(newtime);
+
+        //获取本地时间
+        var dat = time.getFullYear() + '0' + (time.getMonth() + 1) + time.getDate();
+        //取值
+        var dd = "YT" + dat + "0001";
+        //赋值给lab标签
+        $("#dd").html(dd);
+    })//加载事件
+
+    
+    $("#shop").click(function () {
+        layer.open({
+            type: 2,
+            area: ['900px', '500px'],
+            scrollbar: false,
+            title: ['选择供应商', 'font-weight:700'],
+            content: ['/Storage/shoppage', 'auto'],
+            success: function (layero, index) {
+                var body = layer.getChildFrame("body", index);
+                $(body).find(":checkbox").iCheck({
+                    checkboxClass: "icheckbox_square-red"
+                });
+            },
+            end: function () {
+                //销毁时刷新
+                $('#productLend').bootstrapTable("refresh");
+            }
+        });
+    });//模式窗口
+
+
+</script>

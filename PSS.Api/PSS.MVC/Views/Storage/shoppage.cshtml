@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="~/iCheck/jquery.icheck.min.js"></script>
+<script src="~/layui/layui.all.js"></script>
+
+
+<link href="~/css/sb-admin.css" rel="stylesheet">
+<link href="~/css/plugins/morris.css" rel="stylesheet">
+<link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<script src="~/js/jquery.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>选择供应商</title>
+</head>
+<body>
+
+    <div style="background-color:white" align="center">
+        <table class="table table-condensed table-hover" border="1">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>供货商</th>
+                    <th>公司名称</th>
+                    <th>CEO</th>
+                    <th>联系方式</th>
+                    <th>公司地址</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $.get("http://localhost:56642/api/Storage", {}, function (rs) {
+                var tbl = $("table");
+                tbl.find("tr:gt(0)").remove();
+                $.each(rs, function (i, obj) {
+                    var tr = $("<tr/>");
+
+                    var td1 = $("<td/>").text(obj.PPID);
+                    var td2 = $("<td/>").text(obj.PPName);
+                    var td3 = $("<td/>").text(obj.PPCompany);
+                    var td4 = $("<td/>").text(obj.PPMan);
+                    var td5 = $("<td/>").text(obj.PPTel);
+                    var td6 = $("<td/>").text(obj.PPAddress);
+
+                    tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6);
+                    tbl.append(tr);
+                });
+            }, "json");
+        })
+
+    </script>
+</body>
+</html>

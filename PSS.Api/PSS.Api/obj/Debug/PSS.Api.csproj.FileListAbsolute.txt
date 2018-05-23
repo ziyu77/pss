@@ -87,3 +87,4 @@ D:\pss\pss\PSS.Api\PSS.Api\bin\System.Web.Http.WebHost.xml
 D:\pss\pss\PSS.Api\PSS.Api\obj\Debug\PSS.Api.csprojResolveAssemblyReference.cache
 D:\pss\pss\PSS.Api\PSS.Api\obj\Debug\PSS.Api.dll
 D:\pss\pss\PSS.Api\PSS.Api\obj\Debug\PSS.Api.pdb
+C:\Users\15387\Music\Desktop\newsproject\pss\PSS.Api\PSS.Api\obj\Debug\PSS.Api.csprojResolveAssemblyReference.cache

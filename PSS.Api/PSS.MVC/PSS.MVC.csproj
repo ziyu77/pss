@@ -168,6 +168,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Storage\Purchase.cshtml" />
     <Content Include="Views\Depots\CheckDepot.cshtml" />
+    <Content Include="Views\Storage\PurchaseAdd.cshtml" />
+    <Content Include="Views\Storage\shoppage.cshtml" />
+    <Content Include="Views\Storage\edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -177,6 +180,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="iCheck\" />
+    <Folder Include="layui\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
